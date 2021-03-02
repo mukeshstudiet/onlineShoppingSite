@@ -1,0 +1,34 @@
+<div class='card'>
+  <div class='card-header'>
+    {{pageTitle}}
+  </div>
+  <div class='card-body'>
+    <div class='row'>
+      <div class='col-md-4'>
+    </div>
+
+    <div class='table-responsive'>
+      <table class='table'
+             *ngIf='orders && orders.length'>
+        <thead>
+          <tr>
+            <th> Order ID</th>
+            <th> Order Date</th>
+            <th> Order Cost</th>
+          </tr> 
+        </thead>
+        <tbody>
+          <tr *ngFor='let order of orders'>
+            <td>{{ order.orderId }}</td>
+            <td>{{ order.releaseDate }}</td>
+            <td>{{ order.orderCost | currency:'USD':'symbol':'1.2-2' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div *ngIf='errorMessage'
+     class='alert alert-danger'>
+  Error: {{ errorMessage }}
+</div>
