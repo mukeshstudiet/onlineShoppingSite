@@ -60,7 +60,11 @@ export class ProductService {
     }
   }
   
-  
+  clearCart() {
+    this.cartItems = [];
+    this.products.next(this.cartItems);
+  }
+
   sortByProperty(property){  
     return function(a,b){  
        if(a[property] > b[property])  
@@ -71,6 +75,7 @@ export class ProductService {
        return 0;  
     }  
   }
+  
 
   private handleError(err: HttpErrorResponse): Observable<never> {
     // in a real world app, we may send the server to some remote logging infrastructure

@@ -1,7 +1,8 @@
-import { Component ,OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CartService } from './cart.service';
 import { ProductService } from '../products/product.service';
 import * as moment from 'moment';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -9,31 +10,31 @@ import * as moment from 'moment';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent {
-    items = this.cartService.getItems();
-    products=[];
+  items = this.cartService.getItems();
+  products = [];
   totalAmount: any;
-    constructor(
-        private cartService: CartService, private productService: ProductService
-      ) { }
+  constructor(
+    private cartService: CartService, private productService: ProductService, private router: Router
+  ) { }
 
-      ngOnInit(): void {
-      
-        this.productService.products.subscribe((product) => {
-          console.log("from cart page",product);
-          this.products=product;
-           this.totalProductAmount();
-        });
-      }
+  ngOnInit(): void {
 
-  quantity:number=0;
+    this.productService.products.subscribe((product) => {
+      console.log("from cart page", product);
+      this.products = product;
+      this.totalProductAmount();
+    });
+  }
 
-  i=0;
-  
-   plus(product) {
+  quantity: number = 0;
+
+  i = 0;
+
+  plus(product) {
     if (product.quantity != 10) {
       product.quantity = product.quantity + 1;
     }
-      this.totalProductAmount();
+    this.totalProductAmount();
   }
 
   minus(product) {
@@ -41,34 +42,43 @@ export class CartComponent {
     if (product.quantity != 0) {
       product.quantity = product.quantity - 1;
     }
-     this.totalProductAmount();
+    this.totalProductAmount();
 
   }
-  
-  
-    checkoutFinal() {
+
+
+  checkoutFinal() {
 
     let total = 0,  //set a variable that holds our total
       i;
     for (i = 0; i < this.products.length; i++) {  //loop through the array
       total += this.products[i].price * this.products[i].quantity;  //Do the math!
     }
-
+    let orderUrl = 'http://localhost:3000/orders/saveOrder';
     let orderFinal = { "orderDate": moment(new Date()).format('D MMM YYYY'), "orderCost": total.toFixed(2) }
 
-    console.log(orderFinal);
+    this.cartService.postRequestData(orderUrl, orderFinal).subscribe(data => {
+      if (data.msg == "SUCCESS") {
+        this.productService.clearCart();
+        this.router.navigate(['orders']);
+        
+      } else {
+        alert("Error ocurred")
+      }
+      console.log(data);
+    })
 
   }
-  
+
   deleteProduct(product) {
     this.products.splice(this.products.findIndex(a => a.productId === product.productId), 1);
     this.totalProductAmount();
 
   }
-  
-   totalProductAmount() {
-    let total = 0,  //set a variable that holds our total
-      i;
+
+  totalProductAmount() {
+    let total = 0, i; //set a variable that holds our total
+     
     for (i = 0; i < this.products.length; i++) {  //loop through the array
       total += this.products[i].price * this.products[i].quantity;  //Do the math!
     }
