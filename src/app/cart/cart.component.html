@@ -31,7 +31,9 @@
    </td>
    <td>{{ product.price | currency:'USD':'symbol':'1.2-2' }}</td>
    <td>{{ product.price * product.quantity | currency:'USD':'symbol':'1.2-2'}}</td>
+   <td (click)="deleteProduct(product)">Delete</td>
  </tr>
+  <tr>Total-{{totalAmount}}</tr>
  <tr>
     <!--div class='card-footer'-->
         <button routerLink="/cart" (click)="checkoutFinal()" class="button fancy-button">Checkout</button>
