@@ -25,16 +25,16 @@
    </td>
    <td>{{ product.productCode }}</td>
    <td>
-   <button type="button" (click)="minus()"> <i class="fa fa-minus"></i></button>
+   <button type="button" (click)="minus(product)"> <i class="fa fa-minus"></i></button>
     <input type="text" [value]="product.quantity" style="width: 30px;">
-    <button type="button" (click)="plus()"> <i class="fa fa-plus"></i></button>  &nbsp;
+    <button type="button" (click)="plus(product)"> <i class="fa fa-plus"></i></button>  &nbsp;
    </td>
    <td>{{ product.price | currency:'USD':'symbol':'1.2-2' }}</td>
    <td>{{ product.price * product.quantity | currency:'USD':'symbol':'1.2-2'}}</td>
  </tr>
  <tr>
     <!--div class='card-footer'-->
-        <button routerLink="/cart" class="button fancy-button">Checkout</button>
+        <button routerLink="/cart" (click)="checkoutFinal()" class="button fancy-button">Checkout</button>
     <!--/div-->
     </tr>
 </tbody>
