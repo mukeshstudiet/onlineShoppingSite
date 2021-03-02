@@ -20,6 +20,7 @@ export class CartComponent {
         this.productService.products.subscribe((product) => {
           console.log("from cart page",product);
           this.products=product;
+           this.totalProductAmount();
         });
       }
 
@@ -31,6 +32,7 @@ export class CartComponent {
     if (product.quantity != 10) {
       product.quantity = product.quantity + 1;
     }
+      this.totalProductAmount();
   }
 
   minus(product) {
@@ -38,6 +40,7 @@ export class CartComponent {
     if (product.quantity != 0) {
       product.quantity = product.quantity - 1;
     }
+     this.totalProductAmount();
 
   }
   
@@ -54,6 +57,22 @@ export class CartComponent {
 
     console.log(orderFinal);
 
+  }
+  
+  deleteProduct(product) {
+    this.products.splice(this.products.findIndex(a => a.productId === product.productId), 1);
+    this.totalProductAmount();
+
+  }
+  
+   totalProductAmount() {
+    let total = 0,  //set a variable that holds our total
+      i;
+    for (i = 0; i < this.products.length; i++) {  //loop through the array
+      total += this.products[i].price * this.products[i].quantity;  //Do the math!
+    }
+
+    this.totalAmount = total.toFixed(2);
   }
 
 }
