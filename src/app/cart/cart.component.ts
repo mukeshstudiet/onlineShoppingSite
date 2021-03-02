@@ -11,6 +11,7 @@ import * as moment from 'moment';
 export class CartComponent {
     items = this.cartService.getItems();
     products=[];
+  totalAmount: any;
     constructor(
         private cartService: CartService, private productService: ProductService
       ) { }
