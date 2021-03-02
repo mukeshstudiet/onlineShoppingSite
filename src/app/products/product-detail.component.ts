@@ -26,7 +26,7 @@ export class ProductDetailComponent implements OnInit {
     }
 
     this.productService.products.subscribe((product) => {
-      console.log("from product page",product);
+      
     });
   }
 

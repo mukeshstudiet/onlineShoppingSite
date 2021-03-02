@@ -12,7 +12,7 @@ export class OrderListComponent implements OnInit {
 
   pageTitle = 'Order List';
   errorMessage = '';
-  
+
   orders: IOrder[] = [];
   constructor(private orderService: OrderService) { }
 

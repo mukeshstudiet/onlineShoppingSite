@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 const routes: Routes = [];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes),CommonModule],
+  imports: [RouterModule.forChild(routes), CommonModule],
   exports: [RouterModule]
 })
 export class CartRoutingModule { }

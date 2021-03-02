@@ -51,23 +51,23 @@ export class CartComponent {
 
   checkoutFinal() {
 
-    let total = 0,  //set a variable that holds our total
+    let total = 0,
       i;
-    for (i = 0; i < this.products.length; i++) {  //loop through the array
-      total += this.products[i].price * this.products[i].quantity;  //Do the math!
+    for (i = 0; i < this.products.length; i++) {  
+      total += this.products[i].price * this.products[i].quantity;  
     }
-    
+
     let orderFinal = { "orderDate": moment(new Date()).format('D MMM YYYY'), "orderCost": total.toFixed(2) }
 
     this.cartService.postRequestData(environment.postOrderUri, orderFinal).subscribe(data => {
       if (data.msg == "SUCCESS") {
         this.productService.clearCart();
         this.router.navigate(['orders']);
-        
+
       } else {
         alert("Error ocurred")
       }
-      //console.log(data);
+      
     })
 
   }
@@ -79,10 +79,9 @@ export class CartComponent {
   }
 
   totalProductAmount() {
-    let total = 0, i; //set a variable that holds our total
-     
-    for (i = 0; i < this.products.length; i++) {  //loop through the array
-      total += this.products[i].price * this.products[i].quantity;  //Do the math!
+    let total = 0, i; 
+    for (i = 0; i < this.products.length; i++) {  
+      total += this.products[i].price * this.products[i].quantity;  
     }
 
     this.totalAmount = total.toFixed(2);
