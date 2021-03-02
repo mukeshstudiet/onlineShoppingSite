@@ -12,8 +12,6 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class ProductService {
-  // If using Stackblitz, replace the url with this line
-  // because Stackblitz can't find the api folder.
   // private productUrl = 'assets/products/products.json';
   //private productUrl = 'api/products/products.json'
   private productUrl = 'http://localhost:3000/products/productlist';

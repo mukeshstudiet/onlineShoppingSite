@@ -1,37 +1,37 @@
 [
   {
     "orderId": 1,
-    "releaseDate": "Jan 19, 2021",
+    "orderDate": "Jan 19, 2021",
     "orderCost": "19.50"
   },
   {
     "orderId": 2,
-    "releaseDate": "Feb 19, 2021",
+    "orderDate": "Feb 19, 2021",
     "orderCost": "12.50"
   },
   {
     "orderId": 12,
-    "releaseDate": "Feb 19, 2021",
+    "orderDate": "Feb 19, 2021",
     "orderCost": "16.50"
   },
   {
     "orderId": 3,
-    "releaseDate": "Feb 28, 2021",
+    "orderDate": "Feb 28, 2021",
     "orderCost": "1.50"
   },
   {
     "orderId": 4,
-    "releaseDate": "Feb 27, 2021",
+    "orderDate": "Feb 27, 2021",
     "orderCost": "111.50"
   },
   {
     "orderId": 5,
-    "releaseDate": "Feb 28, 2021",
+    "orderDate": "Feb 28, 2021",
     "orderCost": "122.50"
   },
   {
     "orderId": 6,
-    "releaseDate": "Feb 27, 2021",
+    "orderDate": "Feb 27, 2021",
     "orderCost": "1223.50"
   }
 ]

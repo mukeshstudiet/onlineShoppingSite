@@ -30,8 +30,6 @@ export class CartComponent {
    plus(product) {
     if (product.quantity != 10) {
       product.quantity = product.quantity + 1;
-      //  this.i++;
-      // this.quantity = this.i;
     }
   }
 
@@ -39,8 +37,6 @@ export class CartComponent {
 
     if (product.quantity != 0) {
       product.quantity = product.quantity - 1;
-      // this.i--;
-      //this.quantity = this.i;
     }
 
   }
