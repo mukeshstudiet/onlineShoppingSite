@@ -8,6 +8,7 @@ export const environment = {
   isDebug: true,
   api_url: 'http://localhost:3000/',
   redirectUri:'http://localhost:4200/welcome',
+  postOrderUri:'http://localhost:3000/orders/saveOrder',
   validateIssuer: false,
   cacheLocation: 'localStorage'
 };

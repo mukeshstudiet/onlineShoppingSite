@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
 
+
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json'
@@ -17,8 +18,6 @@ import { IOrder } from '../orders/order';
   })
 export class CartService {
   
-  private orderUrl = 'http://localhost:3000/orders/saveOrder';
-
   constructor(private http: HttpClient) { }
 
   postRequestData(url, params): Observable<any> {

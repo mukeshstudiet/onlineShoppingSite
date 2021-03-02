@@ -3,6 +3,9 @@ import { CartService } from './cart.service';
 import { ProductService } from '../products/product.service';
 import * as moment from 'moment';
 import { Router, ActivatedRoute } from '@angular/router';
+import { environment } from "../../environments/environment";
+
+
 
 @Component({
   selector: 'app-cart',
@@ -20,7 +23,6 @@ export class CartComponent {
   ngOnInit(): void {
 
     this.productService.products.subscribe((product) => {
-      console.log("from cart page", product);
       this.products = product;
       this.totalProductAmount();
     });
@@ -54,10 +56,10 @@ export class CartComponent {
     for (i = 0; i < this.products.length; i++) {  //loop through the array
       total += this.products[i].price * this.products[i].quantity;  //Do the math!
     }
-    let orderUrl = 'http://localhost:3000/orders/saveOrder';
+    
     let orderFinal = { "orderDate": moment(new Date()).format('D MMM YYYY'), "orderCost": total.toFixed(2) }
 
-    this.cartService.postRequestData(orderUrl, orderFinal).subscribe(data => {
+    this.cartService.postRequestData(environment.postOrderUri, orderFinal).subscribe(data => {
       if (data.msg == "SUCCESS") {
         this.productService.clearCart();
         this.router.navigate(['orders']);
@@ -65,7 +67,7 @@ export class CartComponent {
       } else {
         alert("Error ocurred")
       }
-      console.log(data);
+      //console.log(data);
     })
 
   }
