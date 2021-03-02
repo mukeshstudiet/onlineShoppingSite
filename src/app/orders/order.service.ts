@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators'
+import { environment } from "../../environments/environment";
 
 import { IOrder } from './order';
 
@@ -10,11 +11,10 @@ import { IOrder } from './order';
 })
 export class OrderService {
 
-  private orderUrl = 'http://localhost:3000/orders/orderlist';
   constructor(private http: HttpClient) { }
 
   getOrders(): Observable<IOrder[]> {
-    return this.http.get<IOrder[]>(this.orderUrl)
+    return this.http.get<IOrder[]>(environment.orderListUri)
       .pipe(
         tap(data => console.log('All: ' + JSON.stringify(data))),
         catchError(this.handleError)

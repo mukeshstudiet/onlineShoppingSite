@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
+import { environment } from "../../environments/environment";
 
 import { IProduct } from './product';
 
@@ -12,16 +13,14 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class ProductService {
-  // private productUrl = 'assets/products/products.json';
-  //private productUrl = 'api/products/products.json'
-  private productUrl = 'http://localhost:3000/products/productlist';
+
   public cartItems = [];
   public products = new BehaviorSubject([]);
 
   constructor(private http: HttpClient) { }
 
   getProducts(): Observable<IProduct[]> {
-    return this.http.get<IProduct[]>(this.productUrl)
+    return this.http.get<IProduct[]>(environment.productListUri)
       .pipe(
         tap(data => console.log('All: ' + JSON.stringify(data))),
         catchError(this.handleError)
@@ -40,7 +39,7 @@ export class ProductService {
     this.products.next(products);
   }
 
-  // Add single product to the cart
+  
   addProductToCart(product) {
     let arr = this.cartItems;
     let isExist = arr.some(o => o.productName === product.productName && o.productId === product.productId);
@@ -78,15 +77,12 @@ export class ProductService {
   
 
   private handleError(err: HttpErrorResponse): Observable<never> {
-    // in a real world app, we may send the server to some remote logging infrastructure
-    // instead of just logging it to the console
+
     let errorMessage = '';
     if (err.error instanceof ErrorEvent) {
-      // A client-side or network error occurred. Handle it accordingly.
+
       errorMessage = `An error occurred: ${err.error.message}`;
     } else {
-      // The backend returned an unsuccessful response code.
-      // The response body may contain clues as to what went wrong,
       errorMessage = `Server returned code: ${err.status}, error message is: ${err.message}`;
     }
     console.error(errorMessage);

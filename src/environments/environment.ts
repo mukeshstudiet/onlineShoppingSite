@@ -9,6 +9,9 @@ export const environment = {
   api_url: 'http://localhost:3000/',
   redirectUri:'http://localhost:4200/welcome',
   postOrderUri:'http://localhost:3000/orders/saveOrder',
+  productListUri:'http://localhost:3000/products/productlist',
+  orderListUri:'http://localhost:3000/orders/orderlist',
+  
   validateIssuer: false,
   cacheLocation: 'localStorage'
 };
