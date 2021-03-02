@@ -44,8 +44,22 @@ export class ProductService {
 
   // Add single product to the cart
   addProductToCart(product) {
+    let arr = this.cartItems;
+    let isExist = arr.some(o => o.productName === product.productName && o.productId === product.productId);
+    if (!isExist) {
+
     this.cartItems.push(product);
+    this.cartItems.sort(this.sortByProperty("productId"));
     this.products.next(this.cartItems);
+    
+    }
+    else {
+   
+    this.cartItems.splice(this.cartItems.findIndex(a => a.productId === product.productId), 1)
+    this.cartItems.push(product);
+    this.cartItems.sort(this.sortByProperty("productId"));
+    this.products.next(this.cartItems);
+    }
   }
 
   private handleError(err: HttpErrorResponse): Observable<never> {
