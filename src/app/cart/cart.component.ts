@@ -1,6 +1,7 @@
 import { Component ,OnInit} from '@angular/core';
 import { CartService } from './cart.service';
 import { ProductService } from '../products/product.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-cart',
